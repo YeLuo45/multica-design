@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         env:
           NPM_CONFIG_REGISTRY: "https://registry.npmmirror.com"
-        run: npm install --no-audit --no-fund
+        run: npm install --prefer-offline --no-audit --no-fund
 
       - name: Build
         run: npm run build
