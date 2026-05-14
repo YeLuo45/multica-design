@@ -31,13 +31,16 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Install dependencies
         working-directory: ./docs-site
-        run: npm install --no-audit --no-fund --prefer-offline
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
         working-directory: ./docs-site
-        run: npm run build
+        run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
