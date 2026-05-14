@@ -3,7 +3,6 @@ name: Deploy VitePress Docs to GitHub Pages
 on:
   push:
     branches: [main]
-    paths: ['docs-site/**', '.github/workflows/vitepress-pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -31,29 +30,18 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       - name: Install dependencies
         env:
-          CI: "true"
-          NPM_CONFIG_REGISTRY: "https://registry.npmjs.org"
-        working-directory: ./docs-site
-        run: |
-          echo "--- package.json ---"
-          cat package.json
-          echo "--- pnpm install ---"
-          pnpm install --no-frozen-lockfile 2>&1 || echo "pnpm failed, trying npm"
-          npm install --no-audit --no-fund 2>&1
+          NPM_CONFIG_REGISTRY: "https://registry.npmmirror.com"
+        run: npm install --no-audit --no-fund
 
       - name: Build
-        working-directory: ./docs-site
         run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./docs-site/.vitepress/dist
+          path: .vitepress/dist
 
       - name: Deploy to GitHub Pages
         id: deployment
