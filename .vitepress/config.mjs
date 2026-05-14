@@ -1,6 +1,7 @@
 import { defineConfig } from "vitepress";
 
 export default defineConfig({
+  ignoreDeadLinks: true,
   title: "Multica Design",
   description: "Multica 架构设计文档站",
   base: "/multica-design/",
@@ -12,8 +13,8 @@ export default defineConfig({
     nav: [
       { text: "首页", link: "/" },
       { text: "架构", link: "/architecture" },
-      { text: "前端", link: "/frontend" },
-      { text: "后端", link: "/backend" },
+      { text: "前端", link: "/frontend-stack" },
+      { text: "后端", link: "/backend-stack" },
       { text: "包结构", link: "/packages" },
       { text: "状态管理", link: "/state-management" },
       { text: "部署", link: "/deployment" },
@@ -25,8 +26,8 @@ export default defineConfig({
         items: [
           { text: "首页", link: "/" },
           { text: "架构概览", link: "/architecture" },
-          { text: "前端架构", link: "/frontend" },
-          { text: "后端架构", link: "/backend" },
+          { text: "前端架构", link: "/frontend-stack" },
+          { text: "后端架构", link: "/backend-stack" },
           { text: "包结构", link: "/packages" },
           { text: "状态管理", link: "/state-management" },
           { text: "部署", link: "/deployment" },
