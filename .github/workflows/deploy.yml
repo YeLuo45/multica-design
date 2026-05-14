@@ -18,21 +18,12 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Check directory
-        run: |
-          echo "=== pwd ==="
-          pwd
-          echo "=== ls -la ==="
-          ls -la
-          echo "=== ls docs-site ==="
-          ls -la docs-site/ 2>/dev/null || echo "docs-site not found"
-          echo "=== cat docs-site/package.json ==="
-          cat docs-site/package.json 2>/dev/null || echo "package.json not found"
-
       - name: Install dependencies
+        env:
+          NPM_CONFIG_REGISTRY: "https://registry.npmmirror.com"
         run: |
-          echo "=== npm install ==="
-          cd docs-site && npm install --no-audit --no-fund --loglevel=verbose 2>&1 | tail -20
+          cd docs-site
+          npm install --no-audit --no-fund --prefer-offline 2>&1 | head -30
         shell: bash
 
       - name: Build
