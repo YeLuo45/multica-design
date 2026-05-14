@@ -18,6 +18,7 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,7 +33,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./docs-site
-        run: npm install --prefer-offline
+        run: npm install --no-audit --no-fund --prefer-offline
 
       - name: Build
         working-directory: ./docs-site
